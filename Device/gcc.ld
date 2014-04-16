@@ -43,6 +43,8 @@ MEMORY
  */
 ENTRY(Reset_Handler)
 
+_estack = 0x20017FFF;
+
 SECTIONS
 {
 	.text :
@@ -123,6 +125,7 @@ SECTIONS
 	.data : AT (__etext)
 	{
 		__data_start__ = .;
+		_sdata = __data_start__;
 		*(vtable)
 		*(.data*)
 
@@ -151,17 +154,22 @@ SECTIONS
 		. = ALIGN(4);
 		/* All data end */
 		__data_end__ = .;
+		_edata = __data_end__;
 
 	} > RAM
+
+	_sidata = LOADADDR(.data);
 
 	.bss :
 	{
 		. = ALIGN(4);
 		__bss_start__ = .;
+		_sbss = __bss_start__;
 		*(.bss*)
 		*(COMMON)
 		. = ALIGN(4);
 		__bss_end__ = .;
+		_ebss = __bss_end__;
 	} > RAM
 	
 	.heap (COPY):
