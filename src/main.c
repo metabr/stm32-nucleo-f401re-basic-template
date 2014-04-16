@@ -50,6 +50,8 @@
 /* Private define ------------------------------------------------------------*/
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
+static GPIO_InitTypeDef GPIO_InitStruct;
+
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
 static void Error_Handler(void);
@@ -78,11 +80,19 @@ int main(void)
 
   /* Add your application code here
      */
+  __GPIOA_CLK_ENABLE();
 
+  GPIO_InitStruct.Pin = GPIO_PIN_5;
+  GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
+  GPIO_InitStruct.Pull = GPIO_PULLUP;
+  GPIO_InitStruct.Speed = GPIO_SPEED_FAST;
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /* Infinite loop */
   while (1)
-  {    
+  {
+    HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5);
+    HAL_Delay(100);
   }
 }
 
