@@ -7,6 +7,7 @@
 
 
 
+
   
   <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 
@@ -106,7 +107,34 @@ Notes for STM32F4xx-Nucleo Board Drivers</span><span style="font-size: 20pt; fon
       <table class="MsoNormalTable" style="width: 675pt;" border="0" cellpadding="0" width="900">
         <tbody>
           <tr style="">
-            <td style="padding: 0cm;" valign="top"><span style="font-family: Arial;"><span style="font-style: italic;"><span style="font-weight: bold;"></span></span></span><h2 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><a name="History"></a><span style="font-size: 12pt; color: white;">Update History</span></h2>
+            <td style="padding: 0cm;" valign="top"><span style="font-family: Arial;"><span style="font-style: italic;"><span style="font-weight: bold;"></span></span></span><h2 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial;"><a name="History"></a><span style="font-size: 12pt; color: white;">Update History</span></h2><br>
+            <h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; margin-right: 500pt; width: 180px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.1.0 / 19-June-2014</span></h3>
+
+
+            
+            <p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b style=""><u><span style="font-size: 10pt; font-family: Verdana; color: black;">Main
+Changes<o:p></o:p></span></u></b></p>
+
+
+            
+            <ul style="list-style-type: square;">
+              <li><span style="font-size: 10pt; font-family: Verdana;">stm32f4xx_nucleo.c/.h</span></li>
+              <ul>
+                <li><span style="font-size: 10pt; font-family: Verdana;">Update
+driver to support LCD, joystick and microSD available on Adafruit 1.8"
+shield (reference ID 802) by adding the SPI and ADC IO link operations</span></li>
+              </ul>
+              <ul>
+                <li><span style="font-size: 10pt; font-family: Verdana;">Enhance BSP_PB_Init() function by removing the call of __SYSCFG_CLK_ENABLE() already enabled in the HAL_GPIO_Init()</span></li>
+              </ul>
+              <ul>
+                <li><span style="font-size: 10pt; font-family: Verdana;">Correct BSP_LED_Off() and BSP_LED_On() by inverting GPIO_PIN_RESET/ GPIO_PIN_SET values written on GPIO pins</span></li>
+              </ul>
+              <ul>
+                <li><span style="font-size: 10pt; font-family: Verdana;">Comments clean up and typo corrections</span></li>
+              </ul>
+            </ul>
+
             <h3 style="background: rgb(51, 102, 255) none repeat scroll 0% 50%; -moz-background-clip: -moz-initial; -moz-background-origin: -moz-initial; -moz-background-inline-policy: -moz-initial; margin-right: 500pt; width: 180px;"><span style="font-size: 10pt; font-family: Arial; color: white;">V1.0.0 / 18-February-2014</span></h3>
 
             <p class="MsoNormal" style="margin: 4.5pt 0cm 4.5pt 18pt;"><b style=""><u><span style="font-size: 10pt; font-family: Verdana; color: black;">Main

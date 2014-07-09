@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file    Templates/Src/main.c 
   * @author  MCD Application Team
-  * @version V1.0.1
-  * @date    26-February-2014
+  * @version V1.1.0
+  * @date    26-June-2014
   * @brief   Main program body
   ******************************************************************************
   * @attention
@@ -65,14 +65,17 @@ int main(void)
 {
 
   /* STM32F4xx HAL library initialization:
-       - Configure the Flash prefetch, instruction and Data caches
-       - Configure the Systick to generate an interrupt each 1 msec
-       - Set NVIC Group Priority to 4
+       - Configure the Flash prefetch, Flash preread and Buffer caches
+       - Systick timer is configured by default as source of time base, but user 
+             can eventually implement his proper time base source (a general purpose 
+             timer for example or other time source), keeping in mind that Time base 
+             duration should be kept 1ms since PPP_TIMEOUT_VALUEs are defined and 
+             handled in milliseconds basis.
        - Low Level Initialization
      */
   HAL_Init();
   
-  /* Configure the System clock to have a frequency of 84 MHz */
+  /* Configure the System clock to 84 MHz */
   SystemClock_Config();
   
 
@@ -89,7 +92,7 @@ int main(void)
 /**
   * @brief  System Clock Configuration
   *         The system Clock is configured as follow : 
-  *            System Clock source            = PLL (HSE)
+  *            System Clock source            = PLL (HSI)
   *            SYSCLK(Hz)                     = 84000000
   *            HCLK(Hz)                       = 84000000
   *            AHB Prescaler                  = 1
@@ -119,10 +122,10 @@ static void SystemClock_Config(void)
      regarding system frequency refer to product datasheet.  */
   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE2);
 
-  /* Enable HSE Oscillator and activate PLL with HSI as source */
+  /* Enable HSI Oscillator and activate PLL with HSI as source */
   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
-  RCC_OscInitStruct.HSICalibrationValue = 16;
+  RCC_OscInitStruct.HSICalibrationValue = 0x10;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSI;
   RCC_OscInitStruct.PLL.PLLM = 16;
