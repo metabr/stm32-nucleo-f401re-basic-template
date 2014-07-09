@@ -2,8 +2,8 @@
   ******************************************************************************
   * @file      startup_stm32f401xe.s
   * @author    MCD Application Team
-  * @version   V2.0.0
-  * @date      18-February-2014
+  * @version   V1.1.0
+  * @date      26-June-2014
   * @brief     STM32F401xExx Devices vector table for Atollic TrueSTUDIO toolchain. 
   *            This module performs:
   *                - Set the initial SP
