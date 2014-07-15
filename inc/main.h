@@ -40,8 +40,11 @@
 #define __MAIN_H
 
 /* Includes ------------------------------------------------------------------*/
+#pragma GCC diagnostic ignored "-Wunused-parameter"
+
 #include "stm32f4xx_hal.h"
 
+#pragma GCC diagnostic pop
 /* Exported types ------------------------------------------------------------*/
 /* Exported constants --------------------------------------------------------*/
 /* Exported macro ------------------------------------------------------------*/

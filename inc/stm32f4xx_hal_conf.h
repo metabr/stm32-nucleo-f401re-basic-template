@@ -228,6 +228,7 @@
 /**
   * @brief Include module's header file 
   */
+#pragma GCC diagnostic ignored "-Wunused-parameter"
 
 #ifdef HAL_RCC_MODULE_ENABLED
   #include "stm32f4xx_hal_rcc.h"
@@ -377,6 +378,7 @@
  #include "stm32f4xx_hal_hcd.h"
 #endif /* HAL_HCD_MODULE_ENABLED */
    
+#pragma GCC diagnostic pop
 /* Exported macro ------------------------------------------------------------*/
 #ifdef  USE_FULL_ASSERT
 /**
