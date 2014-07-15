@@ -62,8 +62,11 @@
 /** @addtogroup STM32F4xx_System_Private_Includes
   * @{
   */
+#pragma GCC diagnostic ignored "-Wunused-parameter"
 
 #include "stm32f4xx.h"
+
+#pragma GCC diagnostic pop
 
 #if !defined  (HSE_VALUE) 
   #define HSE_VALUE    ((uint32_t)8000000) /*!< Default value of the External oscillator in Hz */
