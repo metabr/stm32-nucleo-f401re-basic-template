@@ -43,6 +43,7 @@
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 
 #include "stm32f4xx_hal.h"
+#include "stm32f4xx_hal_gpio.h"
 
 #pragma GCC diagnostic pop
 /* Exported types ------------------------------------------------------------*/
