@@ -40,8 +40,10 @@ WFLAGS += -Wall -Wextra -Warray-bounds
 
 LFLAGS = -TDevice/gcc.ld
 
-.PHONY: $(PROJECT_NAME)
+.PHONY: all
+all: $(PROJECT_NAME)
 
+.PHONY: $(PROJECT_NAME)
 $(PROJECT_NAME): $(PROJECT_NAME).elf
 
 $(PROJECT_NAME).elf: $(SRCS) $(EXT_OBJ)
