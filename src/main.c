@@ -46,13 +46,18 @@
   * @{
   */ 
 
+/* Variables used for USB */
+USBD_HandleTypeDef  hUSBDDevice;
+
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
+#define CURSOR_STEP     7
 /* Private macro -------------------------------------------------------------*/
 /* Private variables ---------------------------------------------------------*/
 /* Private function prototypes -----------------------------------------------*/
 static void SystemClock_Config(void);
 static void Error_Handler(void);
+static uint32_t Demo_USBConfig(void);
 
 /* Private functions ---------------------------------------------------------*/
 
@@ -92,6 +97,11 @@ int main(void)
   GPIO_InitStruct.Speed = GPIO_SPEED_FAST;
 
   HAL_GPIO_Init(GPIOA, &GPIO_InitStruct); 
+  
+  /* USB configuration */
+  Demo_USBConfig();
+
+  uint8_t buf[4] = {0, CURSOR_STEP, CURSOR_STEP, 0};
 
   /* Infinite loop */
   while (1)
@@ -100,6 +110,8 @@ int main(void)
 
     /* Insert delay 100 ms */
     HAL_Delay(100);
+
+    USBD_HID_SendReport (&hUSBDDevice, buf, 4);
   }
 }
 
@@ -127,6 +139,7 @@ static void SystemClock_Config(void)
 {
   RCC_ClkInitTypeDef RCC_ClkInitStruct;
   RCC_OscInitTypeDef RCC_OscInitStruct;
+  HAL_StatusTypeDef status;
 
   /* Enable Power Control clock */
   __PWR_CLK_ENABLE();
@@ -146,7 +159,7 @@ static void SystemClock_Config(void)
   RCC_OscInitStruct.PLL.PLLN = 336;
   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV4;
   RCC_OscInitStruct.PLL.PLLQ = 7;
-  if(HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+  if((status = HAL_RCC_OscConfig(&RCC_OscInitStruct)) != HAL_OK)
   {
     Error_Handler();
   }
@@ -162,6 +175,36 @@ static void SystemClock_Config(void)
   {
     Error_Handler();
   }  
+  
+  /* Enable HSE Oscillator
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
+  
+  if((status = HAL_RCC_OscConfig(&RCC_OscInitStruct)) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  */
+}
+
+/**
+  * @brief  Initializes the USB for the demonstration application.
+  * @param  None
+  * @retval None
+  */
+static uint32_t Demo_USBConfig(void)
+{
+  /* Init Device Library */
+  USBD_Init(&hUSBDDevice, &HID_Desc, 0);
+  
+  /* Add Supported Class */
+  USBD_RegisterClass(&hUSBDDevice, USBD_HID_CLASS);
+  
+  /* Start Device Process */
+  USBD_Start(&hUSBDDevice);
+  
+  return 0;
 }
 
 /**
