@@ -51,9 +51,9 @@ INCLUDE = $(addprefix -I,$(INC_DIRS))
 DEFS = -DSTM32F401xE
 
 CFLAGS  = -ggdb -O0
-CFLAGS += -mlittle-endian -mthumb -mcpu=cortex-m4 -mthumb-interwork -Wl,--gc-sections -Wno-unused-parameter
+CFLAGS += -mlittle-endian -mthumb -mcpu=cortex-m4 -mthumb-interwork -Wl,--gc-sections
 
-WFLAGS += -Wall -Wextra -Warray-bounds
+WFLAGS += -Wall -Wextra -Warray-bounds -Wno-unused-parameter
 
 LFLAGS = -TDevice/gcc.ld
 
@@ -73,4 +73,3 @@ $(PROJECT_NAME).elf: $(SRCS) $(EXT_OBJ)
 
 clean:
 	rm -f *.o $(PROJECT_NAME).elf $(PROJECT_NAME).hex $(PROJECT_NAME).bin
-	find . -name \*~ -exec rm {} \;
