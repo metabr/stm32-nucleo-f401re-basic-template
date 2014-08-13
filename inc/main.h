@@ -43,6 +43,11 @@
 #pragma GCC diagnostic ignored "-Wunused-parameter"
 
 #include "stm32f4xx_hal.h"
+#include "stm32f401xe.h"
+
+#include "usbd_core.h"
+#include "usbd_desc.h"
+#include "usbd_hid.h" 
 
 #pragma GCC diagnostic pop
 /* Exported types ------------------------------------------------------------*/
